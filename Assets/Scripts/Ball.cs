@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using Unity.VisualScripting;
+using UnityEditor.Experimental.Rendering;
 using UnityEngine;
 
 public class Ball : MonoBehaviour
@@ -26,10 +28,6 @@ public class Ball : MonoBehaviour
 
         }
         else if(materialName == "Unsafe Color (Instance)")
-        {
-
-        }
-        else if(materialName == "LastRing (Instance)")
         {
 
         }
