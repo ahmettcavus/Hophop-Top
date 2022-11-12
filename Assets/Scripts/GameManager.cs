@@ -1,22 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public GameObject[] helixRings;
     public GameObject helixTube;
+    public GameObject scoreObject;
+    private AudioSource audioSource;
+
     public float ySpawn = 0;
     public float ringsDistance = 4;
     public int numberOfRings = 7;
 
     void Start()
     {
+        audioSource = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<AudioSource>();
+        audioSource.Play();
+        Application.targetFrameRate = 60;
         for (int i = 0; i < numberOfRings; i++)
         {            
             SpawnRing();
         }
+        Time.timeScale = 0;
     }
 
     public void SpawnRing()
@@ -31,6 +36,17 @@ public class GameManager : MonoBehaviour
         }
         GameObject pole = Instantiate(helixTube,transform.up * ySpawn, transform.rotation);
         pole.transform.parent = transform;
+        GameObject score = Instantiate(scoreObject, transform.up * ySpawn, transform.rotation);
+        score.transform.parent = transform;
         ySpawn -= ringsDistance;
+    }
+
+    public void Pause(int num)
+    {
+        Time.timeScale = num;
+    }
+    public void RestartButton()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

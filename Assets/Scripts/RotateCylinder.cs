@@ -9,7 +9,7 @@ public class RotateCylinder : MonoBehaviour
 
     void Update()
     {
-        moveX = Input.GetAxis("Mouse X");
+        moveX = -Input.GetAxis("Mouse X");
         
         if(Input.GetMouseButton(0))
         {
